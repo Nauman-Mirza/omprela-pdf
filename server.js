@@ -2,10 +2,14 @@ const path = require('path');
 const crypto = require('crypto');
 const express = require('express');
 const puppeteer = require('puppeteer');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { create } = require('express-handlebars');
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
+
+// Proxy /item_images/ to the main backend so Puppeteer can load legacy images
+app.use('/item_images', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
 
 const hbs = create({
   defaultLayout: 'main',
