@@ -8,8 +8,8 @@ const { create } = require('express-handlebars');
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 
-// Proxy /item_images/ to the main backend so Puppeteer can load legacy images
-app.use('/item_images', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
+// Proxy /item_images/ via Nginx (port 80) which serves them directly from disk
+app.use('/item_images', createProxyMiddleware({ target: 'http://localhost:80', changeOrigin: true }));
 
 const hbs = create({
   defaultLayout: 'main',
