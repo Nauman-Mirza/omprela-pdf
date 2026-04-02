@@ -122,7 +122,14 @@ app.get('/pdf-render/:uuid', (req, res) => {
     },
     sender: data.sender || {},
     recipient: data.recipient || {},
-    products: data.products || [],
+    products: (data.products || []).map(p => ({
+      ...p,
+      image_src: p.image_src
+        ? (p.image_src.startsWith('http')
+            ? p.image_src
+            : `http://localhost/${p.image_src.replace(/^\//, '')}`)
+        : null,
+    })),
     discountNote: data.discountNote || null,
   });
 });
