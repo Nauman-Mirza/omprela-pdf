@@ -142,11 +142,13 @@ app.post('/generate-pdf', async (req, res) => {
   try {
     browser = await puppeteer.launch({
       headless: 'new',
+      executablePath: process.env.CHROME_PATH || undefined,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
         '--disable-gpu',
+        '--single-process',
       ],
     });
 
