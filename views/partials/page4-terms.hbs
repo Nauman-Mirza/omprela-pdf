@@ -1,0 +1,40 @@
+{{! Page 4 – Payment terms, notes, return policy, and signature }}
+
+<section class="quotation-page quotation-page-4">
+  <header class="page4-header">
+    <img src="/icons/umbrella.svg" alt="" class="page4-logo">
+  </header>
+
+  <div class="page4-content-grid">
+    <div class="page4-column page4-column-payment">
+      <h3 class="page4-heading">{{terms.paymentTitle}}</h3>
+      <p class="page4-text">{{nl2br terms.paymentBody}}</p>
+    </div>
+    <div class="page4-column page4-column-notes">
+      <h3 class="page4-heading">{{terms.notesTitle}}</h3>
+      <p class="page4-text">{{nl2br terms.notesBody}}</p>
+    </div>
+    <div class="page4-column page4-column-returns">
+      <h3 class="page4-heading">{{terms.returnsTitle}}</h3>
+      <p class="page4-text">{{nl2br terms.returnsBody}}</p>
+    </div>
+  </div>
+
+  <div class="page4-signature-block">
+    <span class="page4-signature-label">{{terms.signatureLabel}}</span>
+  </div>
+  <div class="page4-signature-line"></div>
+  <div class="page4-date-row">{{terms.dateLabel}}</div>
+
+  <footer class="page4-footer">
+    <div class="page4-footer-left">
+      <span class="page4-website">{{terms.website}}</span>
+      <span class="page4-email">{{terms.email}}</span>
+    </div>
+    <div class="page4-footer-right">
+      <span class="page4-phone">{{terms.phone1}}</span>
+      <span class="page4-phone">{{terms.phone2}}</span>
+    </div>
+  </footer>
+</section>
+

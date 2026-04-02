@@ -1,0 +1,1011 @@
+/**
+ * Οικονομική Προσφορά - Landing page design
+ * Background #F0F0F0. Fonts: Aeonik Pro Regular + Aeonik Pro Medium (+ PP Museum italic accent)
+ */
+
+/* Internal name from font file; use this so browser matches correctly */
+@font-face {
+  font-family: 'Aeonik Pro Regular';
+  src: url('/fonts/aeonik-pro/aeonik-pro-regular.eot');
+  src: url('/fonts/aeonik-pro/aeonik-pro-regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/aeonik-pro/aeonik-pro-regular.woff2') format('woff2'),
+    url('/fonts/aeonik-pro/aeonik-pro-regular.woff') format('woff'),
+    url('/fonts/aeonik-pro/aeonik-pro-regular.ttf') format('truetype'),
+    url('/fonts/aeonik-pro/aeonik-pro-regular.svg#AeonikProRegular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik Pro Medium';
+  src: url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.eot');
+  src: url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.woff2') format('woff2'),
+    url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.woff') format('woff'),
+    url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.ttf') format('truetype'),
+    url('/fonts/aeonik-pro/Web Fonts/81c9cfcec66a1bb46e90e184f4d04641.svg#Aeonik Pro Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Museum Light';
+  src: url('/fonts/pp-museum/pp-museum-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Museum Light Italic';
+  src: url('/fonts/pp-museum/pp-museum-light-italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+
+  --color-text: #0F1216;
+  --color-heading: #0F1216;
+  --color-text-muted: #707176;
+  --color-border: #cccccc;
+  --color-separator-light: #eeeeee;
+  --color-bg-doc: #F0F0F0;
+  --color-bg-canvas: #F0F0F0;
+  --color-footer-text: #707176;
+  --font-aeonic-regular: 'Aeonik Pro Regular', Arial, Helvetica, sans-serif;
+  --font-aeonic-medium: 'Aeonik Pro Medium', 'Aeonik Pro Regular', Arial, Helvetica, sans-serif;
+  --font-aeonic: var(--font-aeonic-regular);
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-pp-museum: 'PP Museum Light', Georgia, 'Times New Roman', serif;
+  --font-pp-museum-italic: 'PP Museum Light Italic', Georgia, 'Times New Roman', serif;
+  --font-size-base: 13px;
+  --font-size-title: 44px;
+  --font-size-section: 12px;
+  --font-size-body: 11px;
+  --font-size-footer: 9px;
+  --line-height: 1.35;
+  --space-page-y: 30px;
+  --space-page-x: 23px;
+  --space-block: 20px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.quotation-page {
+  margin: 0;
+  padding: 32px 24px 48px;
+  font-family: var(--font-aeonic-regular);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg-canvas);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.quotation-canvas {
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  background: var(--color-bg-doc);
+  box-shadow: none;
+  padding: 0;
+  border-radius: 2px;
+}
+
+.oikonomiki-prosfora {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.oikonomiki-prosfora>.quotation-page {
+  width: 210mm;
+  height: 297mm;
+  box-sizing: border-box;
+  padding: var(--space-page-y) var(--space-page-x);
+  margin: 0 auto;
+  background: var(--color-bg-doc);
+  overflow: hidden;
+}
+
+.oikonomiki-prosfora>.quotation-page+.quotation-page {
+  margin-top: 0;
+}
+
+/* ---------- Page 1 – offer details ---------- */
+.quotation-page-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Page 2 – cover ---------- */
+
+.quotation-page-2 {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
+
+.page2-header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.page2-meta {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-aeonic-regular);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--color-text);
+  min-height: 24px;
+}
+
+.page2-middle {
+  align-self: center;
+  width: 100%;
+}
+
+.page2-extra-fields {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.page2-extra-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-aeonic-regular);
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--color-text);
+}
+
+.page2-extra-label {
+  font-weight: 400;
+}
+
+.page2-extra-value {
+  text-align: right;
+  font-weight: 500;
+}
+
+.page2-website {
+  text-align: left;
+}
+
+.page2-date {
+  text-align: right;
+}
+
+.page2-brand {
+  margin-top: 0;
+  align-self: end;
+  display: flex;
+  justify-content: center;
+}
+
+.page2-brand-logo {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Page 3 – \"Redefining the beach culture\" ---------- */
+
+.quotation-page-3 {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
+
+.page3-header {
+  margin-bottom: 0;
+}
+
+.page3-heading {
+  margin: 0;
+  font-family: var(--font-aeonic-medium);
+  font-size: 96px;
+  line-height: 96px;
+  font-weight: 500;
+  color: var(--color-heading);
+}
+
+.page3-heading-main {
+  font-family: var(--font-aeonic-regular);
+  font-weight: 400;
+  /* regular Aeonik for \"Redefining\" */
+}
+
+.page3-heading-italic {
+  font-family: var(--font-pp-museum-italic);
+  font-style: italic;
+  font-weight: 300;
+  /* light PP Museum for \"the beach\" */
+}
+
+.page3-heading-tail {
+  font-family: var(--font-aeonic-regular);
+  font-weight: 400;
+  /* regular Aeonik for \"culture\" */
+}
+
+.page3-body {
+  align-self: end;
+  margin-bottom: 24px;
+}
+
+.page3-vibe-icon {
+  width: 380px;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.page3-paragraph {
+  margin: 0;
+  max-width: 430px;
+  white-space: pre-line;
+  font-family: var(--font-aeonic-regular);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.page3-footer {
+  margin-top: auto;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-aeonic-medium);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.page3-footer-left,
+.page3-footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.page3-footer-right {
+  text-align: right;
+}
+
+/* ---------- Page 4 – terms ---------- */
+
+.quotation-page-4 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.page4-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page4-logo {
+  width: 34px;
+  height: 34px;
+}
+
+/* Two equal columns; extra items wrap to new rows with the same column widths */
+.page4-content-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 48px;
+  align-items: start;
+}
+
+.page4-column {
+  min-width: 0;
+}
+
+.page4-column-returns {
+  grid-column: span 2;
+}
+
+.page4-heading {
+  margin: 0 0 12px;
+  font-family: var(--font-aeonic-medium);
+  font-size: 13px;
+  font-weight: 700;
+  color: #3D3D3C;
+  letter-spacing: 0.01em;
+}
+
+.page4-text {
+  margin: 0;
+  white-space: pre-line;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 400;
+  color: #3D3D3C;
+  letter-spacing: 0.01em;
+  width: 55%;
+}
+
+.page4-signature-block {
+  margin-top: auto;
+}
+
+.page4-signature-label {
+  font-family: var(--font-aeonic-regular);
+  font-size: 13px;
+  color: #3D3D3C;
+}
+
+.page4-signature-line {
+  margin-top: 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+.page4-date-row {
+  margin-top: 12px;
+  font-family: var(--font-aeonic-regular);
+  font-size: 13px;
+  color: #3D3D3C;
+}
+
+/* ----- Header: title left, icon right ----- */
+.quotation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.quotation-title {
+  margin: 0;
+  font-family: var(--font-aeonic-medium);
+  font-size: var(--font-size-title);
+  font-weight: 500;
+  font-synthesis: weight;
+  color: var(--color-heading);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.header-icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+/* ----- Contact: two columns (labels | details) ----- */
+.quotation-contact {
+  margin-bottom: 24px;
+}
+
+.section-label {
+  margin: 0 0 10px;
+  font-family: var(--font-aeonic-medium);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-synthesis: weight;
+  color: var(--color-heading);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 124px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.contact-row-products {
+  margin-bottom: 0;
+  align-items: start;
+}
+
+.contact-label {
+  font-family: var(--font-aeonic-medium);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-synthesis: weight;
+  color: var(--color-text);
+  padding-top: 2px;
+}
+
+.contact-cell {
+  min-width: 0;
+}
+
+.contact-line {
+  margin: 0 0 4px;
+  font-family: var(--font-pp-museum);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 300;
+  color: var(--color-text);
+}
+
+.contact-line:last-child {
+  margin-bottom: 0;
+}
+
+/* ----- Products list ----- */
+.products-list {
+  margin-top: 0;
+}
+
+.product-block {
+  margin-bottom: 0;
+}
+
+/* Design 1: vertical spacing between product blocks (no HR) */
+.oikonomiki-prosfora:not(.theme-second) .products-list .product-block+.product-block {
+  margin-top: 16px;
+}
+
+.product-separator {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--color-separator-light);
+}
+
+.product-row-inner {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.product-image-wrap {
+  flex-shrink: 0;
+}
+
+.product-image {
+  display: block;
+  object-fit: contain;
+}
+
+.product-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-name {
+  margin: 0 0 6px;
+  font-family: var(--font-aeonic-medium);
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  font-synthesis: weight;
+  color: #3D3D3C;
+  text-align: left;
+}
+
+.product-description {
+  margin: 0 0 22px;
+  font-family: var(--font-pp-museum);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 300;
+  color: var(--color-text);
+}
+
+.product-details-block {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.detail-separator {
+  margin: 6px 0;
+  border: none;
+  border-top: 1px solid var(--color-separator-light);
+}
+
+.product-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-aeonic-regular);
+  font-size: var(--font-size-base);
+  margin-bottom: 6px;
+}
+
+.product-dimensions {
+  font-family: var(--font-aeonic-medium);
+  font-weight: 500;
+}
+
+.product-price {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 700;
+  text-align: right;
+  color: #1D1D1B;
+}
+
+/* ----- Footer: website+email left, phones right (page 1) ----- */
+.quotation-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: none;
+  font-family: var(--font-aeonic-medium);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Design 1 – page 1: align footer spacing with other pages */
+.oikonomiki-prosfora:not(.theme-second) .quotation-page-1 .quotation-footer {
+  margin-top: auto;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-website,
+.footer-email {
+  font-family: var(--font-aeonic-medium);
+  font-weight: 500;
+}
+
+.footer-phone {
+  font-family: var(--font-aeonic-medium);
+  font-weight: 500;
+}
+
+/* Page 4 footer: bottom separator line only on last page */
+.page4-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 14px;
+  padding-top: 0;
+  border-top: none;
+  font-family: var(--font-aeonic-regular);
+  font-size: var(--font-size-footer);
+  color: var(--color-text-muted);
+}
+
+.page4-footer-left,
+.page4-footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.page4-footer-right {
+  text-align: right;
+}
+
+.page3-footer,
+.page3-footer-left,
+.page3-footer-right,
+.page3-website,
+.page3-email,
+.page3-phone,
+.page4-website,
+.page4-email,
+.page4-phone {
+  font-family: var(--font-aeonic-regular);
+}
+
+/* ---------- Theme 2 (route: /design-2) ---------- */
+.oikonomiki-prosfora.theme-second>.quotation-page-1 {
+  background: #EBEBE6;
+}
+
+.oikonomiki-prosfora.theme-second>.quotation-page-2 {
+  background: #C7CDC9;
+  color: #79453B;
+}
+
+.oikonomiki-prosfora.theme-second>.quotation-page-3 {
+  background: #F0DAC6;
+  color: #79453B;
+}
+
+/* Keep page 4 consistent until you provide page-4 palette */
+.oikonomiki-prosfora.theme-second>.quotation-page-4 {
+  background: #EBEBE6;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-2 .page2-meta,
+.oikonomiki-prosfora.theme-second .quotation-page-2 .page2-extra-row,
+.oikonomiki-prosfora.theme-second .quotation-page-3 .page3-heading {
+  color: #79453B;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-2 .page2-meta {
+  font-weight: 400;
+}
+
+/* Design 2: keep page 3 paragraph and footer in neutral palette */
+.oikonomiki-prosfora.theme-second .quotation-page-3 .page3-paragraph {
+  color: var(--color-footer-text);
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-3 .page3-footer {
+  color: var(--color-footer-text);
+}
+
+/* Tint existing SVG icon assets to #79453B for theme 2 */
+.oikonomiki-prosfora.theme-second .header-icon,
+.oikonomiki-prosfora.theme-second .product-image,
+.oikonomiki-prosfora.theme-second .page2-logo,
+.oikonomiki-prosfora.theme-second .page2-brand-logo,
+.oikonomiki-prosfora.theme-second .page3-vibe-icon,
+.oikonomiki-prosfora.theme-second .page4-logo {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(27%) saturate(847%) hue-rotate(327deg) brightness(92%) contrast(89%);
+}
+
+/* Design 2 page 1 uses black umbrella icon */
+.oikonomiki-prosfora.theme-second .quotation-page-1 .header-icon {
+  filter: none;
+}
+
+/* Theme-aware body/canvas backgrounds */
+body.quotation-page.theme-second {
+  background: #F0F0F0;
+}
+
+body.quotation-page.theme-second .quotation-canvas {
+  background: #EBEBE6;
+}
+
+body.quotation-page:not(.theme-second) {
+  background: #F0F0F0;
+}
+
+body.quotation-page:not(.theme-second) .quotation-canvas {
+  background: #F0F0F0;
+}
+
+/* Design 2 - products catalog on page 1 */
+.oikonomiki-prosfora.theme-second .quotation-page-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-title {
+  font-family: var(--font-aeonic-regular);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #2d2d2c;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-1 .header-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.catalog-products-section {
+  flex: 1;
+}
+
+.catalog-products-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.catalog-products-label {
+  font-family: var(--font-aeonic-medium);
+  font-size: 13px;
+  font-weight: 700;
+  color: #353534;
+  padding-top: 10px;
+  margin: 0 0 10px;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-separator {
+  margin: 8px 0;
+  border-top: 1px solid #bdbdb8;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-row-inner {
+  display: grid;
+  grid-template-columns: minmax(230px, 310px) minmax(0, 1fr);
+  gap: 8px;
+  /* Top-align: avoid stretching image column to text height (empty band around img) */
+  align-items: start;
+  padding: 0;
+}
+
+/* No layout box: img sits directly in the grid cell — removes extra vertical slack */
+.oikonomiki-prosfora.theme-second .products-list .product-image-wrap {
+  display: contents;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-image {
+  display: block;
+  width: 100%;
+  max-width: 310px;
+  height: auto;
+  max-height: 190px;
+  object-fit: contain;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-image[src*='chair.svg'] {
+  /* user previously had custom translate on this, reset to normal */
+  transform: none;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-block {
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-block:last-child {
+  margin-bottom: 0;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-separator {
+  display: none;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-name {
+  margin-bottom: 4px;
+  font-family: var(--font-aeonic-medium);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #373736;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-description {
+  margin: 0 0 4px;
+  font-family: var(--font-pp-museum);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+/* Design 2: allow text column to reach page padding on the right */
+.oikonomiki-prosfora.theme-second .products-list .product-body {
+  max-width: 380px;
+  align-self: start;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-details-block {
+  width: 100%;
+  max-width: none;
+  border-top: 1px solid #999;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-detail-row {
+  min-height: 18px;
+  border-bottom: 1px solid #999;
+  font-size: 11px;
+  line-height: 14px;
+  color: #2f2f2e;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-dimensions {
+  font-family: var(--font-aeonic-medium);
+  font-weight: 700;
+}
+
+.oikonomiki-prosfora.theme-second .products-list .product-price {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+  color: #2f2f2e;
+}
+
+.oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  color: #2d2d2c;
+  font-family: var(--font-aeonic-medium);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Design 2: distribute rows vertically to match catalog composition */
+.oikonomiki-prosfora.theme-second .catalog-products-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+  /* Reduce extra space so footer can render on page 1 */
+  padding-bottom: 0.25rem;
+}
+
+.oikonomiki-prosfora.theme-second .catalog-products-row {
+  /* Don't stretch to full flex:1 height — that inflates the grid row and clips products */
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: 100%;
+  align-items: start;
+  align-content: start;
+}
+
+.oikonomiki-prosfora.theme-second .catalog-products-row .products-list {
+  display: flex;
+  flex-direction: column;
+  /* Compress vertical spacing between product blocks */
+  gap: 3px;
+}
+
+/* Keep catalog product images true-color (not icon tint) */
+.oikonomiki-prosfora.theme-second .products-list .product-image {
+  filter: none;
+}
+
+/* Ensure Design 1 keeps product borders visible */
+.oikonomiki-prosfora:not(.theme-second) .product-separator,
+.oikonomiki-prosfora.theme-default .product-separator,
+body.quotation-page:not(.theme-second) .product-separator {
+  display: block;
+  height: 0;
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #999;
+}
+
+.oikonomiki-prosfora:not(.theme-second) .detail-separator,
+.oikonomiki-prosfora.theme-default .detail-separator,
+body.quotation-page:not(.theme-second) .detail-separator {
+  display: none;
+}
+
+.oikonomiki-prosfora:not(.theme-second) .product-detail-row,
+.oikonomiki-prosfora.theme-default .product-detail-row,
+body.quotation-page:not(.theme-second) .product-detail-row {
+  border-bottom: 1px solid #999;
+  padding: 4px 0;
+}
+
+.oikonomiki-prosfora:not(.theme-second) .product-detail-row:first-child,
+.oikonomiki-prosfora.theme-default .product-detail-row:first-child,
+body.quotation-page:not(.theme-second) .product-detail-row:first-child {
+  border-top: 1px solid #999;
+}
+/* ---------- Design 3: Discount Table ---------- */
+.design-3 .product-details-table {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Vertical rules between numeric columns only (no line after dimensions / 1fr column) */
+.design-3 .product-details-table::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(#999, #999),
+    linear-gradient(#999, #999);
+  background-size: 1px 100%, 1px 100%;
+  background-position:
+    calc(100% - 150px) 0,
+    calc(100% - 80px) 0;
+  background-repeat: no-repeat;
+}
+
+.design-3 .product-details-header,
+.design-3 .product-detail-row.discount-layout {
+  position: relative;
+  z-index: 1;
+}
+
+.design-3 .product-details-header {
+  display: grid;
+  grid-template-columns: 1fr 70px 70px 80px;
+  gap: 0;
+  padding: 4px 0;
+  font-family: var(--font-aeonic-regular);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-align: right;
+  border-bottom: none;
+}
+
+.design-3 .product-details-header > * {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.design-3 .product-details-header > *:first-child {
+  padding-left: 0;
+}
+
+.design-3 .header-dim {
+  text-align: left;
+}
+
+.design-3 .product-detail-row.discount-layout {
+  display: grid;
+  grid-template-columns: 1fr 70px 70px 80px;
+  gap: 0;
+  padding: 8px 0;
+  border-bottom: none;
+  align-items: baseline;
+}
+
+.design-3 .product-detail-row.discount-layout > * {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.design-3 .product-detail-row.discount-layout > *:first-child {
+  padding-left: 0;
+}
+
+.design-3 .product-detail-row.discount-layout > *:last-child {
+  padding-right: 0;
+}
+
+.design-3 .product-detail-row.discount-layout:last-child {
+  border-bottom: 1px solid #999;
+}
+
+.design-3 .product-dimensions {
+  text-align: left;
+  font-family: var(--font-aeonic-medium);
+  font-weight: 700;
+  color: #1D1D1B;
+}
+
+.design-3 .product-price,
+.design-3 .product-discount,
+.design-3 .product-net-price {
+  text-align: right;
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1D1D1B;
+}
+
+.design-3 .discount-note {
+  margin-top: 32px;
+  font-family: var(--font-pp-museum);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.design-3 .discount-note p {
+  margin: 0;
+}

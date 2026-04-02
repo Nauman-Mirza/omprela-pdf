@@ -1,0 +1,58 @@
+/* Print: 4-page quotation layout */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    height: auto;
+    background: #F0F0F0;
+  }
+
+  body.quotation-page {
+    display: block;
+    padding: 0;
+    background: #F0F0F0;
+    align-items: unset;
+  }
+
+  body.quotation-page .quotation-canvas {
+    box-shadow: none;
+    overflow: visible;
+    border-radius: 0;
+    width: 210mm;
+    max-width: none;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .oikonomiki-prosfora {
+    margin: 0;
+  }
+
+  .oikonomiki-prosfora > .quotation-page {
+    height: 297mm;
+    padding: 26px 23px 22px;
+    box-sizing: border-box;
+    margin: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .oikonomiki-prosfora > .quotation-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .quotation-page + .quotation-page {
+    margin-top: 0 !important;
+  }
+}
