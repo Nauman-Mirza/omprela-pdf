@@ -141,6 +141,7 @@ app.post('/generate-pdf', async (req, res) => {
   const uuid = crypto.randomUUID();
   sessions.set(uuid, { type, data });
   setTimeout(() => sessions.delete(uuid), 60000);
+  console.log('Products image_src:', data.products?.map(p => p.image_src));
 
   let browser;
   try {
