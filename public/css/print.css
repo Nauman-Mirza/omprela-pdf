@@ -35,7 +35,8 @@
     margin: 0;
   }
 
-  .oikonomiki-prosfora > .quotation-page {
+  /* Pages 2, 3, 4: fixed single-page height */
+  .oikonomiki-prosfora > .quotation-page:not(.quotation-page-1) {
     height: 297mm;
     padding: 26px 23px 22px;
     box-sizing: border-box;
@@ -45,6 +46,24 @@
     overflow: hidden;
     break-after: page;
     page-break-after: always;
+  }
+
+  /* Page 1: grows to fit all products across as many pages as needed */
+  .oikonomiki-prosfora > .quotation-page-1 {
+    height: auto;
+    min-height: 297mm;
+    padding: 26px 23px 22px;
+    box-sizing: border-box;
+    margin: 0;
+    overflow: visible;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  /* Don't split a product block across two pages */
+  .product-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   .oikonomiki-prosfora > .quotation-page:last-child {

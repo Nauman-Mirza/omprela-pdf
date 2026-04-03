@@ -119,6 +119,19 @@ body.quotation-page {
   overflow: hidden;
 }
 
+/* Page 1 grows to fit all products — no fixed height, no clip */
+.oikonomiki-prosfora>.quotation-page-1 {
+  height: auto;
+  min-height: 297mm;
+  overflow: visible;
+}
+
+/* Keep individual product blocks from splitting across pages */
+.product-block {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
 .oikonomiki-prosfora>.quotation-page+.quotation-page {
   margin-top: 0;
 }
