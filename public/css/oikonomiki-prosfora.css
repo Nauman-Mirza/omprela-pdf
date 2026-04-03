@@ -321,21 +321,19 @@ body.quotation-page {
   height: 34px;
 }
 
-/* Two equal columns; extra items wrap to new rows with the same column widths */
-.page4-content-grid {
+.page4-top-grid {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px 48px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
 }
 
 .page4-column {
   min-width: 0;
 }
 
-.page4-column-returns {
-  grid-column: span 2;
+.page4-returns {
+  margin-top: 26px;
 }
 
 .page4-heading {
@@ -355,8 +353,6 @@ body.quotation-page {
   line-height: 1.65;
   font-weight: 400;
   color: #3D3D3C;
-  letter-spacing: 0.01em;
-  width: 55%;
 }
 
 .page4-signature-block {
