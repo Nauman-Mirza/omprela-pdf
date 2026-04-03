@@ -5,6 +5,9 @@ const puppeteer = require('puppeteer');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { create } = require('express-handlebars');
 
+// S3 base URL — used to resolve S3 keys like "products/uuid.png" into full HTTPS URLs
+const S3_BASE = process.env.S3_BASE_URL || 'https://omprela-prod.s3.eu-south-1.amazonaws.com';
+
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 
@@ -126,8 +129,10 @@ app.get('/pdf-render/:uuid', (req, res) => {
       ...p,
       image_src: p.image_src
         ? (p.image_src.startsWith('http')
-            ? p.image_src
-            : `http://localhost/${p.image_src.replace(/^\//, '')}`)
+            ? p.image_src                                                          // already a full URL
+            : p.image_src.replace(/^\//, '').includes('/')
+              ? `${S3_BASE}/${p.image_src.replace(/^\//, '')}`                    // S3 key (e.g. products/uuid.png)
+              : `http://localhost/item_images/${p.image_src.replace(/^\//, '')}`) // legacy local filename
         : null,
     })),
     discountNote: data.discountNote || null,
