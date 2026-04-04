@@ -492,6 +492,7 @@ body.quotation-page {
   width: 120px;
   height: 120px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .product-body {
@@ -752,9 +753,8 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 .oikonomiki-prosfora.theme-second .products-list .product-row-inner {
   display: grid;
-  grid-template-columns: minmax(230px, 310px) minmax(0, 1fr);
-  gap: 8px;
-  /* Top-align: avoid stretching image column to text height (empty band around img) */
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 16px;
   align-items: start;
   padding: 0;
 }
@@ -766,11 +766,10 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 .oikonomiki-prosfora.theme-second .products-list .product-image {
   display: block;
-  width: 100%;
-  max-width: 310px;
-  height: auto;
-  max-height: 190px;
+  width: 160px;
+  height: 130px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .oikonomiki-prosfora.theme-second .products-list .product-image[src*='chair.svg'] {
