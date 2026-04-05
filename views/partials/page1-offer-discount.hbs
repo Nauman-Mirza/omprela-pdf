@@ -1,89 +1,93 @@
 {{! Page 1 – Οικονομική Προσφορά with Discounts (offer list) }}
 
 <section class="quotation-page quotation-page-1 design-3">
-  {{! ----- Header: title left, umbrella icon right ----- }}
-  <header class="quotation-header">
-    <h1 class="quotation-title">{{title}}</h1>
-    <img src="{{#if assets.headerIconUrl}}{{assets.headerIconUrl}}{{else}}/icons/umbrella.svg{{/if}}" alt=""
-      class="header-icon">
-  </header>
-
-  {{! ----- Contact: labels left, details right (row per block) ----- }}
-  <section class="quotation-contact">
-    <h2 class="section-label">Στοιχεία Επικοινωνίας</h2>
-    <div class="contact-row">
-      <span class="contact-label">Από</span>
-      <div class="contact-cell">
-        <p class="contact-line">{{sender.name}}</p>
-        <p class="contact-line contact-line-department">{{sender.department}}</p>
-        <p class="contact-line">Τηλέφωνο: {{sender.phone}}</p>
-      </div>
+  <div class="page1-table">
+    <div class="page1-table-footer">
+      <footer class="quotation-footer">
+        <div class="footer-left">
+          <span class="footer-website">{{footer.website}}</span>
+          <span class="footer-email">{{footer.email}}</span>
+        </div>
+        <div class="footer-right">
+          <span class="footer-phone">{{footer.phone1}}</span>
+          <span class="footer-phone">{{footer.phone2}}</span>
+        </div>
+      </footer>
     </div>
-    <div class="contact-row">
-      <span class="contact-label">Προς</span>
-      <div class="contact-cell">
-        <p class="contact-line">{{recipient.name}}</p>
-        <p class="contact-line">{{recipient.order_method}}</p>
-        <p class="contact-line">{{recipient.vat_info}}</p>
-      </div>
-    </div>
-    <div class="contact-row contact-row-products">
-      <span class="contact-label">Προϊόν</span>
-      <div class="contact-cell products-list">
-        {{#each products}}
-        <div class="product-block">
-          <div class="product-row-inner">
-            <div class="product-image-wrap">
-              <img
-                src="{{#if this.image_src}}{{this.image_src}}{{else}}{{#if ../assets.asideImageUrl}}{{../assets.asideImageUrl}}{{else}}/icons/umbrella-product-icon.svg{{/if}}{{/if}}"
-                alt="" class="product-image">
-            </div>
-            <div class="product-body">
-              <h3 class="product-name">{{this.title}}</h3>
-              <p class="product-description">{{this.description}}</p>
+    <div class="page1-table-body">
+      {{! ----- Header: title left, umbrella icon right ----- }}
+      <header class="quotation-header">
+        <h1 class="quotation-title">{{title}}</h1>
+        <img src="{{#if assets.headerIconUrl}}{{assets.headerIconUrl}}{{else}}/icons/umbrella.svg{{/if}}" alt=""
+          class="header-icon">
+      </header>
 
-              <div class="product-details-table">
-                <div class="product-details-header">
-                  <span class="header-dim"></span>
-                  <span class="header-price">Αξία</span>
-                  <span class="header-discount">Εκπτ. %</span>
-                  <span class="header-net">Καθ. Αξία</span>
+      {{! ----- Contact: labels left, details right (row per block) ----- }}
+      <section class="quotation-contact">
+        <h2 class="section-label">Στοιχεία Επικοινωνίας</h2>
+        <div class="contact-row">
+          <span class="contact-label">Από</span>
+          <div class="contact-cell">
+            <p class="contact-line">{{sender.name}}</p>
+            <p class="contact-line contact-line-department">{{sender.department}}</p>
+            <p class="contact-line">Τηλέφωνο: {{sender.phone}}</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Προς</span>
+          <div class="contact-cell">
+            <p class="contact-line">{{recipient.name}}</p>
+            <p class="contact-line">{{recipient.order_method}}</p>
+            <p class="contact-line">{{recipient.vat_info}}</p>
+          </div>
+        </div>
+        <div class="contact-row contact-row-products">
+          <span class="contact-label">Προϊόν</span>
+          <div class="contact-cell products-list">
+            {{#each products}}
+            <div class="product-block">
+              <div class="product-row-inner">
+                <div class="product-image-wrap">
+                  <img
+                    src="{{#if this.image_src}}{{this.image_src}}{{else}}{{#if ../assets.asideImageUrl}}{{../assets.asideImageUrl}}{{else}}/icons/umbrella-product-icon.svg{{/if}}{{/if}}"
+                    alt="" class="product-image">
                 </div>
+                <div class="product-body">
+                  <h3 class="product-name">{{this.title}}</h3>
+                  <p class="product-description">{{this.description}}</p>
 
-                <div class="product-details-rows">
-                  {{#each this.details}}
-                  <div class="product-detail-row discount-layout">
-                    <span class="product-dimensions">{{this.dimensions}}</span>
-                    <span class="product-price">{{this.price}}</span>
-                    <span class="product-discount">{{#if this.discount}}{{this.discount}}{{/if}}</span>
-                    <span class="product-net-price">{{#if this.netPrice}}{{this.netPrice}}{{/if}}</span>
+                  <div class="product-details-table">
+                    <div class="product-details-header">
+                      <span class="header-dim"></span>
+                      <span class="header-price">Αξία</span>
+                      <span class="header-discount">Εκπτ. %</span>
+                      <span class="header-net">Καθ. Αξία</span>
+                    </div>
+
+                    <div class="product-details-rows">
+                      {{#each this.details}}
+                      <div class="product-detail-row discount-layout">
+                        <span class="product-dimensions">{{this.dimensions}}</span>
+                        <span class="product-price">{{this.price}}</span>
+                        <span class="product-discount">{{#if this.discount}}{{this.discount}}{{/if}}</span>
+                        <span class="product-net-price">{{#if this.netPrice}}{{this.netPrice}}{{/if}}</span>
+                      </div>
+                      {{/each}}
+                    </div>
                   </div>
-                  {{/each}}
                 </div>
               </div>
             </div>
+            {{/each}}
           </div>
         </div>
-        {{/each}}
+      </section>
+
+      {{#if discountNote}}
+      <div class="discount-note">
+        <p>{{nl2br discountNote}}</p>
       </div>
+      {{/if}}
     </div>
-  </section>
-
-  {{#if discountNote}}
-  <div class="discount-note">
-    <p>{{nl2br discountNote}}</p>
   </div>
-  {{/if}}
-
-  {{! ----- Footer: website + email left, phones right ----- }}
-  <footer class="quotation-footer">
-    <div class="footer-left">
-      <span class="footer-website">{{footer.website}}</span>
-      <span class="footer-email">{{footer.email}}</span>
-    </div>
-    <div class="footer-right">
-      <span class="footer-phone">{{footer.phone1}}</span>
-      <span class="footer-phone">{{footer.phone2}}</span>
-    </div>
-  </footer>
 </section>

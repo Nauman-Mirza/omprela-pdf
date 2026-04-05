@@ -136,8 +136,22 @@ body.quotation-page {
 
 /* ---------- Page 1 – offer details ---------- */
 .quotation-page-1 {
-  display: flex;
-  flex-direction: column;
+  display: block;
+}
+
+/* Table trick: footer-group always renders at the bottom of every printed page */
+.page1-table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.page1-table-body {
+  display: table-row-group;
+}
+
+.page1-table-footer {
+  display: table-footer-group;
 }
 
 /* ---------- Page 2 – cover ---------- */
@@ -572,9 +586,9 @@ body.quotation-page {
   color: var(--color-text-muted);
 }
 
-/* Design 1 – page 1: footer spacing */
+/* Design 1 – page 1: footer spacing handled by table-footer-group */
 .oikonomiki-prosfora:not(.theme-second) .quotation-page-1 .quotation-footer {
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .footer-left,
@@ -708,8 +722,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 /* Design 2 - products catalog on page 1 */
 .oikonomiki-prosfora.theme-second .quotation-page-1 {
-  display: flex;
-  flex-direction: column;
+  display: block;
 }
 
 .oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-header {
@@ -846,7 +859,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 }
 
 .oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-footer {
-  margin-top: auto;
+  margin-top: 0;
   padding-top: 16px;
   color: #2d2d2c;
   font-family: var(--font-aeonic-medium);
