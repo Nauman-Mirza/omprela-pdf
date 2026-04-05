@@ -181,18 +181,22 @@ app.post('/generate-pdf', async (req, res) => {
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
 
-    // Snap quotation-page-1 to an exact multiple of 297mm so the footer
-    // always lands at the bottom of the last physical page.
-    // 297mm at 96dpi = 1122.519...px — subtract 4px tolerance to avoid
-    // rounding a nearly-full page up to an extra blank page.
+    // Snap quotation-page-1 to an exact multiple of 297mm so margin-top:auto
+    // on the footer pushes it to the bottom of the last physical page.
+    // 297mm @ 96dpi = 1122.519...px  — MUST use Math.floor, not Math.round,
+    // because 1123px > 1122.52px (one page) which silently overflows to page 2.
     await page.evaluate(() => {
-      const PAGE_H = 297 * 96 / 25.4; // ~1122.52px
-      const TOLERANCE = 4;
+      const PAGE_H = 297 * 96 / 25.4; // 1122.519...px
       const el = document.querySelector('.oikonomiki-prosfora > .quotation-page-1');
       if (!el) return;
-      const h = el.scrollHeight;
-      const pages = Math.max(1, Math.ceil((h - TOLERANCE) / PAGE_H));
-      el.style.height = Math.round(pages * PAGE_H) + 'px';
+      const footer = el.querySelector('.quotation-footer');
+      // Measure height of everything above the footer to know which page we're on
+      const elRect = el.getBoundingClientRect();
+      const footerRect = footer ? footer.getBoundingClientRect() : null;
+      const contentH = footerRect ? (footerRect.top - elRect.top) : el.scrollHeight;
+      const pages = Math.max(1, Math.ceil(contentH / PAGE_H));
+      // Math.floor keeps us strictly within the page boundary
+      el.style.height = Math.floor(pages * PAGE_H) + 'px';
       el.style.minHeight = 'unset';
     });
 
