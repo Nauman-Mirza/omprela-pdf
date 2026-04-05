@@ -82,11 +82,8 @@
     page-break-inside: avoid;
   }
 
-  /* Puppeteer displayHeaderFooter handles the footer on every page */
-  .quotation-footer,
-  .page3-footer,
-  .page4-footer {
-    display: none !important;
+  .quotation-page-1 .quotation-footer {
+    margin-top: 16px;
   }
 
   .oikonomiki-prosfora > .quotation-page:last-child {

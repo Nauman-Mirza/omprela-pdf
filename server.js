@@ -182,19 +182,7 @@ app.post('/generate-pdf', async (req, res) => {
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
-      displayHeaderFooter: true,
-      headerTemplate: '<span></span>',
-      footerTemplate: `<div style="width:100%;padding:0 23px 10px;box-sizing:border-box;display:flex;justify-content:space-between;font-family:Arial,sans-serif;font-size:9px;color:#707176;font-weight:500;line-height:1.4;">
-        <div style="display:flex;flex-direction:column;gap:1px;">
-          <span>www.omprela.gr</span>
-          <span>e-mail: info@omprela.gr</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:1px;text-align:right;">
-          <span>23214.01146</span>
-          <span>23257.70410</span>
-        </div>
-      </div>`,
-      margin: { top: 0, bottom: '42px', left: 0, right: 0 },
+      margin: { top: 0, bottom: 0, left: 0, right: 0 },
       preferCSSPageSize: false,
     });
 
