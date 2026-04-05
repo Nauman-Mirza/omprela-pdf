@@ -136,22 +136,8 @@ body.quotation-page {
 
 /* ---------- Page 1 – offer details ---------- */
 .quotation-page-1 {
-  display: block;
-}
-
-/* Table trick: footer-group always renders at the bottom of every printed page */
-.page1-table {
-  display: table;
-  width: 100%;
-  height: 100%;
-}
-
-.page1-table-body {
-  display: table-row-group;
-}
-
-.page1-table-footer {
-  display: table-footer-group;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- Page 2 – cover ---------- */
@@ -722,7 +708,8 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 /* Design 2 - products catalog on page 1 */
 .oikonomiki-prosfora.theme-second .quotation-page-1 {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-header {

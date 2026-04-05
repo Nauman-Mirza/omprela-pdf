@@ -82,8 +82,19 @@
     page-break-inside: avoid;
   }
 
+  /* Pin products-page footer to the bottom of every physical page via position:fixed.
+     Fixed elements repeat on every printed page in Chromium — same as body::before. */
   .quotation-page-1 .quotation-footer {
-    margin-top: 16px;
+    position: fixed;
+    bottom: 22px;
+    left: 23px;
+    right: 23px;
+    margin: 0;
+  }
+
+  /* Push product content up so last item isn't hidden behind the fixed footer */
+  .quotation-page-1 {
+    padding-bottom: 60px !important;
   }
 
   .oikonomiki-prosfora > .quotation-page:last-child {
