@@ -492,7 +492,7 @@ body.quotation-page {
   width: 120px;
   height: 120px;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .product-body {
@@ -769,7 +769,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
   width: 160px;
   height: 130px;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .oikonomiki-prosfora.theme-second .products-list .product-image[src*='chair.svg'] {

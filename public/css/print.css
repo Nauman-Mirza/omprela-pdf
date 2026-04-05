@@ -69,9 +69,11 @@
     page-break-inside: avoid;
   }
 
-  /* Ensure the footer stays with content and doesn't float mid-page on continuation */
+  /* Sticky footer — pins to the bottom of each physical page in Puppeteer */
   .quotation-page-1 .quotation-footer {
-    margin-top: 24px;
+    position: sticky;
+    bottom: 22px;
+    margin-top: 16px;
   }
 
   .oikonomiki-prosfora > .quotation-page:last-child {
