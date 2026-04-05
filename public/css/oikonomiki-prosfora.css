@@ -562,11 +562,6 @@ body.quotation-page {
   color: #1D1D1B;
 }
 
-/* Flex spacer — fills remaining space, pushes footer to page bottom */
-.quotation-spacer {
-  flex: 1;
-}
-
 /* ----- Footer: website+email left, phones right (page 1) ----- */
 .quotation-footer {
   display: flex;
@@ -582,7 +577,7 @@ body.quotation-page {
 
 /* Design 1 – page 1: footer spacing */
 .oikonomiki-prosfora:not(.theme-second) .quotation-page-1 .quotation-footer {
-  margin-top: 0;
+  margin-top: auto;
 }
 
 .footer-left,
@@ -854,7 +849,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 }
 
 .oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-footer {
-  margin-top: 0;
+  margin-top: auto;
   padding-top: 16px;
   color: #2d2d2c;
   font-family: var(--font-aeonic-medium);
