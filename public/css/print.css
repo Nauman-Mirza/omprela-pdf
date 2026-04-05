@@ -14,6 +14,19 @@
     background: #F0F0F0;
   }
 
+  /* Fixed pseudo-element repeats background color on every physical page */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #F0F0F0;
+    z-index: -1;
+  }
+
+  body.theme-second::before {
+    background: #EBEBE6;
+  }
+
   body.quotation-page {
     display: block;
     padding: 0;
@@ -69,10 +82,7 @@
     page-break-inside: avoid;
   }
 
-  /* Sticky footer — pins to the bottom of each physical page in Puppeteer */
   .quotation-page-1 .quotation-footer {
-    position: sticky;
-    bottom: 22px;
     margin-top: 16px;
   }
 

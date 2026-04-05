@@ -178,6 +178,18 @@ app.post('/generate-pdf', async (req, res) => {
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
 
+    // Pad the footer so it lands at the bottom of the last product page
+    await page.evaluate(() => {
+      const page1 = document.querySelector('.quotation-page-1');
+      const footer = page1 && page1.querySelector('.quotation-footer');
+      if (!page1 || !footer) return;
+      const A4_PX = 297 * (96 / 25.4); // 297mm in CSS pixels at 96dpi
+      const totalH = page1.scrollHeight;
+      const pages = Math.ceil(totalH / A4_PX);
+      const extra = (pages * A4_PX) - totalH;
+      if (extra > 10) footer.style.marginTop = Math.floor(extra) + 'px';
+    });
+
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
