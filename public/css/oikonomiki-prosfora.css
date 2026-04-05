@@ -104,9 +104,7 @@ body.quotation-page {
 }
 
 .oikonomiki-prosfora {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: block;
 }
 
 .oikonomiki-prosfora>.quotation-page {
