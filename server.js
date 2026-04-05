@@ -179,21 +179,6 @@ app.post('/generate-pdf', async (req, res) => {
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
 
-    // Set page-1 height in `mm` (not px) so there is zero floating-point
-    // rounding error between JS measurement and Puppeteer's PDF renderer.
-    // scrollHeight is in CSS px; 1 CSS px = 25.4/96 mm at 96 dpi.
-    await page.evaluate(() => {
-      const el = document.querySelector('.oikonomiki-prosfora > .quotation-page-1');
-      if (!el) return;
-      const PX_TO_MM = 25.4 / 96;
-      const contentMM = el.scrollHeight * PX_TO_MM;
-      const pages = Math.max(1, Math.ceil(contentMM / 297));
-      el.style.height = (pages * 297) + 'mm';
-      el.style.minHeight = 'unset';
-    });
-
-    await new Promise(r => setTimeout(r, 300));
-
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
