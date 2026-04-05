@@ -65,14 +65,15 @@
           </div>
         </div>
         {{/each}}
-        {{#if discountNote}}
-        <div class="discount-note">
-          <p>{{nl2br discountNote}}</p>
-        </div>
-        {{/if}}
       </div>
     </div>
   </section>
+
+  {{#if discountNote}}
+  <div class="discount-note">
+    <p>{{nl2br discountNote}}</p>
+  </div>
+  {{/if}}
 
   {{! ----- Footer: website + email left, phones right ----- }}
   <footer class="quotation-footer">

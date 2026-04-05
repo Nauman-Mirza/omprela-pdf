@@ -145,7 +145,8 @@ body.quotation-page {
 .quotation-page-2 {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page2-header {
@@ -221,7 +222,8 @@ body.quotation-page {
 .quotation-page-3 {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page3-header {
@@ -306,7 +308,8 @@ body.quotation-page {
 .quotation-page-4 {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page4-header {
@@ -1005,7 +1008,7 @@ body.quotation-page:not(.theme-second) .product-detail-row:first-child {
 }
 
 .design-3 .discount-note {
-  margin-top: 32px;
+  margin-top: 16px;
   font-family: var(--font-pp-museum);
   font-size: 13px;
   font-weight: 300;
