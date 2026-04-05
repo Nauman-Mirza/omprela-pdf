@@ -170,6 +170,8 @@ app.post('/generate-pdf', async (req, res) => {
     });
 
     const page = await browser.newPage();
+    // Set viewport to A4 width at 96dpi so layout matches PDF exactly
+    await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
     await page.goto(`http://localhost:${PORT}/pdf-render/${uuid}`, {
       waitUntil: 'networkidle0',
       timeout: 60000,
@@ -178,6 +180,23 @@ app.post('/generate-pdf', async (req, res) => {
     await page.emulateMediaType('print');
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
+
+    // Snap quotation-page-1 to an exact multiple of 297mm so the footer
+    // always lands at the bottom of the last physical page.
+    // 297mm at 96dpi = 1122.519...px — subtract 4px tolerance to avoid
+    // rounding a nearly-full page up to an extra blank page.
+    await page.evaluate(() => {
+      const PAGE_H = 297 * 96 / 25.4; // ~1122.52px
+      const TOLERANCE = 4;
+      const el = document.querySelector('.oikonomiki-prosfora > .quotation-page-1');
+      if (!el) return;
+      const h = el.scrollHeight;
+      const pages = Math.max(1, Math.ceil((h - TOLERANCE) / PAGE_H));
+      el.style.height = Math.round(pages * PAGE_H) + 'px';
+      el.style.minHeight = 'unset';
+    });
+
+    await new Promise(r => setTimeout(r, 300));
 
     const pdf = await page.pdf({
       format: 'A4',
