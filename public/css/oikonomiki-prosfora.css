@@ -327,7 +327,7 @@ body.quotation-page {
   margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px 38px;
+  gap: 36px 48px;
   align-items: start;
 }
 
@@ -356,11 +356,8 @@ body.quotation-page {
   line-height: 1.65;
   font-weight: 400;
   color: #3D3D3C;
+  letter-spacing: 0.01em;
   width: 55%;
-}
-
-.page4-column-returns .page4-text {
-  width: auto;
 }
 
 .page4-signature-block {
