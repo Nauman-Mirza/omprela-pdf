@@ -355,7 +355,7 @@ body.quotation-page {
 }
 
 .page4-signature-block {
-  margin-top: auto;
+  margin-top: 36px;
 }
 
 .page4-signature-label {
@@ -593,12 +593,12 @@ body.quotation-page {
   font-weight: 500;
 }
 
-/* Page 4 footer: (kept for legacy, no longer rendered in template) */
+/* Page 4 footer: pinned to bottom of page */
 .page4-footer {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 14px;
+  margin-top: auto;
   padding-top: 0;
   border-top: none;
   font-family: var(--font-aeonic-regular);
