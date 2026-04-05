@@ -90,12 +90,33 @@
     left: 23px;
     right: 23px;
     margin: 0;
+    z-index: 1;
   }
 
   /* Push product content up so last item isn't hidden behind the fixed footer */
   .quotation-page-1 {
     padding-bottom: 60px !important;
   }
+
+  /* Mask the fixed footer on non-product pages by covering the bottom
+     with a block that matches each page's background color */
+  .print-footer-mask {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 2;
+  }
+
+  .page2-footer-mask { background: #F0F0F0; }
+  .page3-footer-mask { background: #F0F0F0; }
+  .page4-footer-mask { background: #F0F0F0; }
+
+  /* Theme 2 overrides */
+  .theme-second .page2-footer-mask { background: #C7CDC9; }
+  .theme-second .page3-footer-mask { background: #F0DAC6; }
+  .theme-second .page4-footer-mask { background: #EBEBE6; }
 
   .oikonomiki-prosfora > .quotation-page:last-child {
     break-after: auto;
