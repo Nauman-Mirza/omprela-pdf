@@ -129,10 +129,10 @@ app.get('/pdf-render/:uuid', (req, res) => {
       ...p,
       image_src: p.image_src
         ? (p.image_src.startsWith('http')
-            ? p.image_src                                                          // already a full URL
-            : p.image_src.replace(/^\//, '').includes('/')
-              ? `${S3_BASE}/${p.image_src.replace(/^\//, '')}`                    // S3 key (e.g. products/uuid.png)
-              : `http://localhost/item_images/${p.image_src.replace(/^\//, '')}`) // legacy local filename
+            ? p.image_src                                                                        // already a full URL
+            : p.image_src.replace(/^\//, '').startsWith('products/')
+              ? `${S3_BASE}/${p.image_src.replace(/^\//, '')}`                                  // S3 key (e.g. products/uuid.png)
+              : `http://localhost/item_images/${p.image_src.replace(/^.*item_images\//, '')}`)  // legacy local file
         : null,
     })),
     discountNote: data.discountNote || null,
