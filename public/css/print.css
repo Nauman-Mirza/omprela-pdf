@@ -58,12 +58,20 @@
     overflow: visible;
     break-after: page;
     page-break-after: always;
+    /* Repeat padding on every physical page fragment */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   /* Don't split a product block across two pages */
   .product-block {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  /* Ensure the footer stays with content and doesn't float mid-page on continuation */
+  .quotation-page-1 .quotation-footer {
+    margin-top: 24px;
   }
 
   .oikonomiki-prosfora > .quotation-page:last-child {
