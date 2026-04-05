@@ -179,17 +179,6 @@ app.post('/generate-pdf', async (req, res) => {
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
 
-    // Snap page-1 height to a full 297mm multiple so the footer always lands
-    // at the bottom of the last physical page (not mid-page after the last product).
-    await page.evaluate(() => {
-      const PAGE_PX = 297 * 96 / 25.4; // 297mm → CSS px at 96 dpi
-      const el = document.querySelector('.oikonomiki-prosfora > .quotation-page-1');
-      if (!el) return;
-      const pages = Math.ceil(el.getBoundingClientRect().height / PAGE_PX);
-      el.style.height = (pages * PAGE_PX) + 'px';
-      el.style.minHeight = 'unset';
-    });
-
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
