@@ -175,6 +175,7 @@ app.post('/generate-pdf', async (req, res) => {
       timeout: 60000,
     });
 
+    await page.emulateMediaType('print');
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 1500));
 
