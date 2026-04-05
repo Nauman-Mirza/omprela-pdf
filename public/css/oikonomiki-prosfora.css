@@ -322,27 +322,30 @@ body.quotation-page {
   height: 34px;
 }
 
-.page4-top-grid {
+/* Two equal columns; extra items wrap to new rows with the same column widths */
+.page4-content-grid {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 38px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 38px;
+  align-items: start;
 }
 
 .page4-column {
   min-width: 0;
 }
 
-.page4-returns {
-  margin-top: 26px;
+.page4-column-returns {
+  grid-column: span 2;
 }
 
 .page4-heading {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-family: var(--font-aeonic-medium);
   font-size: 13px;
   font-weight: 700;
   color: #3D3D3C;
+  letter-spacing: 0.01em;
 }
 
 .page4-text {
@@ -350,13 +353,18 @@ body.quotation-page {
   white-space: pre-line;
   font-family: var(--font-inter);
   font-size: 13px;
-  line-height: 16px;
+  line-height: 1.65;
   font-weight: 400;
   color: #3D3D3C;
+  width: 55%;
+}
+
+.page4-column-returns .page4-text {
+  width: auto;
 }
 
 .page4-signature-block {
-  margin-top: 36px;
+  margin-top: auto;
 }
 
 .page4-signature-label {
@@ -594,12 +602,12 @@ body.quotation-page {
   font-weight: 500;
 }
 
-/* Page 4 footer: pinned to bottom of page */
+/* Page 4 footer: bottom of page */
 .page4-footer {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: auto;
+  margin-top: 14px;
   padding-top: 0;
   border-top: none;
   font-family: var(--font-aeonic-regular);
