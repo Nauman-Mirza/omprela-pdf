@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} — {{footer.website}}</title>
+  <link rel="stylesheet" href="/css/oikonomiki-prosfora.css?v=202603085">
+  <link rel="stylesheet" href="/css/print.css?v=202603085" media="print">
+  <style>
+    @media print {
+      .pdf-products-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0 23px 10px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        z-index: 100;
+      }
+      .pdf-products-footer-col {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Aeonik Pro Medium', Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        color: #707176;
+        line-height: 1.35;
+        font-weight: 500;
+      }
+      .pdf-products-footer-col:last-child {
+        text-align: right;
+      }
+      /* Extra bottom padding on every page fragment so content stays above fixed footer */
+      .quotation-page-1 {
+        padding-bottom: 50px !important;
+      }
+    }
+  </style>
+</head>
+<body class="quotation-page landing{{#if themeClass}} {{themeClass}}{{/if}}">
+  <div class="quotation-canvas">
+    {{{body}}}
+  </div>
+  <div class="pdf-products-footer">
+    <div class="pdf-products-footer-col">
+      <span>{{footer.website}}</span>
+      <span>{{footer.email}}</span>
+    </div>
+    <div class="pdf-products-footer-col">
+      <span>{{footer.phone1}}</span>
+      <span>{{footer.phone2}}</span>
+    </div>
+  </div>
+</body>
+</html>
