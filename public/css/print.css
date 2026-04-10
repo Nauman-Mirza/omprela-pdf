@@ -86,38 +86,6 @@
     margin-top: 16px;
   }
 
-  /* Fixed footer: appears on every physical page via position:fixed */
-  .pdf-fixed-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 23px 10px;
-    display: flex !important;
-    justify-content: space-between;
-    align-items: flex-end;
-    z-index: 2;
-  }
-
-  /* Cover / vibe / terms pages have solid backgrounds and sit above the fixed footer,
-     so the footer is hidden on those pages and only visible on products (page-1) pages */
-  .quotation-page-2,
-  .quotation-page-3,
-  .quotation-page-4 {
-    position: relative;
-    z-index: 3;
-  }
-
-  /* Products page: reserve space at the bottom so content doesn't go under the footer */
-  .oikonomiki-prosfora > .quotation-page-1 {
-    padding-bottom: 50px !important;
-  }
-
-  /* Hide the inline footer in print — the fixed footer replaces it */
-  .quotation-page-1 .quotation-footer {
-    display: none !important;
-  }
-
   .oikonomiki-prosfora > .quotation-page:last-child {
     break-after: auto;
     page-break-after: auto;

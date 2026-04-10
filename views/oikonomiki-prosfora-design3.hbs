@@ -1,18 +1,5 @@
 {{! Οικονομική Προσφορά – 4-page layout container (Design 3) }}
 
-{{! Fixed footer — position:fixed in print so it repeats on every page.
-    Cover/vibe/terms pages sit above it (z-index) so it only shows on products pages. }}
-<div class="pdf-fixed-footer">
-  <div class="footer-left">
-    <span class="footer-website">{{footer.website}}</span>
-    <span class="footer-email">{{footer.email}}</span>
-  </div>
-  <div class="footer-right">
-    <span class="footer-phone">{{footer.phone1}}</span>
-    <span class="footer-phone">{{footer.phone2}}</span>
-  </div>
-</div>
-
 <article class="oikonomiki-prosfora{{#if themeClass}} {{themeClass}}{{/if}}">
   {{> page2-cover this}}
   {{> page3-vibe this}}
