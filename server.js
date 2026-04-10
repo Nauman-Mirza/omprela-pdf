@@ -2,7 +2,6 @@ const path = require('path');
 const crypto = require('crypto');
 const express = require('express');
 const puppeteer = require('puppeteer');
-const { PDFDocument } = require('pdf-lib');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { create } = require('express-handlebars');
 
@@ -102,20 +101,6 @@ const TEMPLATE_MAP = {
   },
 };
 
-// Split templates for 3-pass PDF generation (cover + products + terms)
-const SPLIT_TEMPLATES = {
-  quotation: {
-    coverView: 'oikonomiki-prosfora-cover',
-    productsView: 'oikonomiki-prosfora-products',
-    termsView: 'oikonomiki-prosfora-terms',
-  },
-  'quotation-discount': {
-    coverView: 'oikonomiki-prosfora-cover',
-    productsView: 'oikonomiki-prosfora-products-discount',
-    termsView: 'oikonomiki-prosfora-terms',
-  },
-};
-
 // ── In-memory session store (Puppeteer reads rendered page from here) ─────────
 const sessions = new Map();
 
@@ -149,9 +134,7 @@ function buildRenderData(type, data) {
   };
 }
 
-// ── Internal render routes (Puppeteer navigates here) ─────────────────────────
-
-// Full document render (used for preview and pricelist PDF)
+// ── Internal render route (Puppeteer navigates here) ─────────────────────────
 app.get('/pdf-render/:uuid', (req, res) => {
   const session = sessions.get(req.params.uuid);
   if (!session) return res.status(404).send('Session expired');
@@ -159,62 +142,6 @@ app.get('/pdf-render/:uuid', (req, res) => {
   const tpl = TEMPLATE_MAP[type] || TEMPLATE_MAP['quotation'];
   res.render(tpl.view, buildRenderData(type, data));
 });
-
-// Cover + Vibe pages only
-app.get('/pdf-render-cover/:uuid', (req, res) => {
-  const session = sessions.get(req.params.uuid);
-  if (!session) return res.status(404).send('Session expired');
-  const { type, data } = session;
-  const split = SPLIT_TEMPLATES[type];
-  res.render(split.coverView, buildRenderData(type, data));
-});
-
-// Products section only (uses products-only layout with fixed footer)
-app.get('/pdf-render-products/:uuid', (req, res) => {
-  const session = sessions.get(req.params.uuid);
-  if (!session) return res.status(404).send('Session expired');
-  const { type, data } = session;
-  const split = SPLIT_TEMPLATES[type];
-  res.render(split.productsView, { layout: 'products-only', ...buildRenderData(type, data) });
-});
-
-// Terms section only
-app.get('/pdf-render-terms/:uuid', (req, res) => {
-  const session = sessions.get(req.params.uuid);
-  if (!session) return res.status(404).send('Session expired');
-  const { type, data } = session;
-  const split = SPLIT_TEMPLATES[type];
-  res.render(split.termsView, buildRenderData(type, data));
-});
-
-// ── PDF helpers ───────────────────────────────────────────────────────────────
-
-async function renderSectionPdf(browser, url, options = {}) {
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
-  await page.emulateMediaType('print');
-  await page.evaluateHandle('document.fonts.ready');
-  await new Promise(r => setTimeout(r, 1000));
-  if (options.preEvaluate) await options.preEvaluate(page);
-  const pdf = await page.pdf({
-    format: 'A4',
-    printBackground: true,
-    margin: { top: 0, bottom: 0, left: 0, right: 0 },
-    preferCSSPageSize: false,
-  });
-  await page.close();
-  return pdf;
-}
-
-async function mergePdfs(buffers) {
-  const merged = await PDFDocument.create();
-  for (const buf of buffers) {
-    const doc = await PDFDocument.load(buf);
-    const pages = await merged.copyPages(doc, doc.getPageIndices());
-    pages.forEach(p => merged.addPage(p));
-  }
-  return Buffer.from(await merged.save());
-}
 
 // ── PDF generation endpoint ───────────────────────────────────────────────────
 app.post('/generate-pdf', async (req, res) => {
@@ -246,47 +173,21 @@ app.post('/generate-pdf', async (req, res) => {
       ],
     });
 
-    let pdf;
+    const page = await browser.newPage();
+    await page.goto(`http://localhost:${PORT}/pdf-render/${uuid}`, {
+      waitUntil: 'networkidle0',
+      timeout: 60000,
+    });
+    await page.emulateMediaType('print');
+    await page.evaluateHandle('document.fonts.ready');
+    await new Promise(r => setTimeout(r, 1500));
 
-    if (SPLIT_TEMPLATES[type]) {
-      // 3-pass generation: cover | products (fixed footer) | terms
-      const baseUrl = `http://localhost:${PORT}`;
-
-      const coverPdf = await renderSectionPdf(browser, `${baseUrl}/pdf-render-cover/${uuid}`);
-
-      const productsPdf = await renderSectionPdf(browser, `${baseUrl}/pdf-render-products/${uuid}`);
-
-      const termsPdf = await renderSectionPdf(browser, `${baseUrl}/pdf-render-terms/${uuid}`, {
-        preEvaluate: async (page) => {
-          // Remove break-before since terms is now the first (and only) page in this PDF
-          await page.evaluate(() => {
-            const el = document.querySelector('.quotation-page-4');
-            if (el) {
-              el.style.pageBreakBefore = '';
-              el.style.breakBefore = '';
-            }
-          });
-        },
-      });
-
-      pdf = await mergePdfs([coverPdf, productsPdf, termsPdf]);
-    } else {
-      // Single-pass for pricelist
-      const page = await browser.newPage();
-      await page.goto(`http://localhost:${PORT}/pdf-render/${uuid}`, {
-        waitUntil: 'networkidle0',
-        timeout: 60000,
-      });
-      await page.emulateMediaType('print');
-      await page.evaluateHandle('document.fonts.ready');
-      await new Promise(r => setTimeout(r, 1500));
-      pdf = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        margin: { top: 0, bottom: 0, left: 0, right: 0 },
-        preferCSSPageSize: false,
-      });
-    }
+    const pdf = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: { top: 0, bottom: 0, left: 0, right: 0 },
+      preferCSSPageSize: false,
+    });
 
     sessions.delete(uuid);
     res.setHeader('Content-Type', 'application/pdf');

@@ -15,6 +15,5 @@
     "express-handlebars": "^7.1.2",
     "puppeteer": "^22.0.0",
     "http-proxy-middleware": "^3.0.0",
-    "pdf-lib": "^1.17.1"
   }
 }
