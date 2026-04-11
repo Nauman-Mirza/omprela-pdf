@@ -112,9 +112,8 @@
     padding-bottom: 50px !important;
   }
 
-  /* Hide the inline footer on quotation templates — fixed footer replaces it.
-     Pricelist (theme-second) keeps its inline footer. */
-  .oikonomiki-prosfora:not(.theme-second) .quotation-page-1 .quotation-footer {
+  /* Hide the inline footer — fixed footer replaces it on all templates */
+  .quotation-page-1 .quotation-footer {
     display: none !important;
   }
 
