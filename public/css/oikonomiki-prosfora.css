@@ -694,6 +694,14 @@ body.quotation-page.theme-second {
   background: #F0F0F0;
 }
 
+/* Fixed footer: hidden in screen/preview mode, shown only in print (print.css overrides) */
+.pdf-fixed-footer {
+  display: none;
+  font-family: var(--font-aeonic-medium);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
 
 body.quotation-page.theme-second .quotation-canvas {
   background: #EBEBE6;
