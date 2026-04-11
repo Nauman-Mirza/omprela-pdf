@@ -322,12 +322,12 @@ body.quotation-page {
   height: 34px;
 }
 
-/* Two equal columns; extra items wrap to new rows with the same column widths */
-.page4-content-grid {
+/* Two-column grid for payment + notes */
+.page4-top-grid {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
   align-items: start;
 }
 
@@ -335,8 +335,9 @@ body.quotation-page {
   min-width: 0;
 }
 
-.page4-column-returns {
-  grid-column: span 2;
+/* Full-width Παρατηρήσεις section below the top grid */
+.page4-returns {
+  margin-top: 26px;
 }
 
 .page4-heading {
@@ -357,7 +358,6 @@ body.quotation-page {
   font-weight: 400;
   color: #3D3D3C;
   letter-spacing: 0.01em;
-  width: 45%;
 }
 
 .page4-signature-block {
