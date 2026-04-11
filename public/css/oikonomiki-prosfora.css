@@ -104,9 +104,7 @@ body.quotation-page {
 }
 
 .oikonomiki-prosfora {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: block;
 }
 
 .oikonomiki-prosfora>.quotation-page {
@@ -147,7 +145,8 @@ body.quotation-page {
 .quotation-page-2 {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page2-header {
@@ -223,7 +222,8 @@ body.quotation-page {
 .quotation-page-3 {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page3-header {
@@ -308,7 +308,8 @@ body.quotation-page {
 .quotation-page-4 {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .page4-header {
@@ -321,12 +322,12 @@ body.quotation-page {
   height: 34px;
 }
 
-/* Two equal columns; extra items wrap to new rows with the same column widths */
-.page4-content-grid {
+/* Two-column grid for payment + notes */
+.page4-top-grid {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
   align-items: start;
 }
 
@@ -334,8 +335,13 @@ body.quotation-page {
   min-width: 0;
 }
 
-.page4-column-returns {
-  grid-column: span 2;
+/* Full-width Παρατηρήσεις section below the top grid */
+.page4-returns {
+  margin-top: 26px;
+}
+
+.page4-returns .page4-text {
+  width: 50%;
 }
 
 .page4-heading {
@@ -352,11 +358,10 @@ body.quotation-page {
   white-space: pre-line;
   font-family: var(--font-inter);
   font-size: 13px;
-  line-height: 1.65;
+  line-height: 1.85;
   font-weight: 400;
   color: #3D3D3C;
   letter-spacing: 0.01em;
-  width: 55%;
 }
 
 .page4-signature-block {
@@ -493,7 +498,10 @@ body.quotation-page {
 
 .product-image {
   display: block;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
+  mix-blend-mode: darken;
 }
 
 .product-body {
@@ -568,9 +576,9 @@ body.quotation-page {
   color: var(--color-text-muted);
 }
 
-/* Design 1 – page 1: align footer spacing with other pages */
+/* Design 1 – page 1: footer spacing handled by table-footer-group */
 .oikonomiki-prosfora:not(.theme-second) .quotation-page-1 .quotation-footer {
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .footer-left,
@@ -781,6 +789,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
   height: auto;
   max-height: 190px;
   object-fit: contain;
+  mix-blend-mode: darken;
 }
 
 .oikonomiki-prosfora.theme-second .products-list .product-image[src*='chair.svg'] {
@@ -852,7 +861,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 }
 
 .oikonomiki-prosfora.theme-second .quotation-page-1 .quotation-footer {
-  margin-top: auto;
+  margin-top: 0;
   padding-top: 16px;
   color: #2d2d2c;
   font-family: var(--font-aeonic-medium);
@@ -1018,7 +1027,7 @@ body.quotation-page:not(.theme-second) .product-detail-row:first-child {
 }
 
 .design-3 .discount-note {
-  margin-top: 32px;
+  margin-top: 16px;
   font-family: var(--font-pp-museum);
   font-size: 13px;
   font-weight: 300;
