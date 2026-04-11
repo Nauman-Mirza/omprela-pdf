@@ -340,6 +340,10 @@ body.quotation-page {
   margin-top: 26px;
 }
 
+.page4-returns .page4-text {
+  width: 50%;
+}
+
 .page4-heading {
   margin: 0 0 12px;
   font-family: var(--font-aeonic-medium);
