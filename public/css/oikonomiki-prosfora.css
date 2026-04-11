@@ -771,8 +771,8 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 .oikonomiki-prosfora.theme-second .products-list .product-row-inner {
   display: grid;
-  grid-template-columns: 160px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(230px, 310px) minmax(0, 1fr);
+  gap: 8px;
   align-items: start;
   padding: 0;
 }
@@ -784,8 +784,10 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 
 .oikonomiki-prosfora.theme-second .products-list .product-image {
   display: block;
-  width: 160px;
-  height: 130px;
+  width: 100%;
+  max-width: 310px;
+  height: auto;
+  max-height: 190px;
   object-fit: contain;
   mix-blend-mode: darken;
 }
