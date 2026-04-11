@@ -1,11 +1,11 @@
 {{! Page 4 – Payment terms, notes, return policy, and signature }}
 
-<section class="quotation-page quotation-page-4" style="page-break-before:always;break-before:page;">
+<section class="quotation-page quotation-page-4">
   <header class="page4-header">
     <img src="/icons/umbrella.svg" alt="" class="page4-logo">
   </header>
 
-  <div class="page4-top-grid">
+  <div class="page4-content-grid">
     <div class="page4-column page4-column-payment">
       <h3 class="page4-heading">{{terms.paymentTitle}}</h3>
       <p class="page4-text">{{nl2br terms.paymentBody}}</p>
@@ -14,11 +14,10 @@
       <h3 class="page4-heading">{{terms.notesTitle}}</h3>
       <p class="page4-text">{{nl2br terms.notesBody}}</p>
     </div>
-  </div>
-
-  <div class="page4-returns">
-    <h3 class="page4-heading">{{terms.returnsTitle}}</h3>
-    <p class="page4-text">{{nl2br terms.returnsBody}}</p>
+    <div class="page4-column page4-column-returns">
+      <h3 class="page4-heading">{{terms.returnsTitle}}</h3>
+      <p class="page4-text">{{nl2br terms.returnsBody}}</p>
+    </div>
   </div>
 
   <div class="page4-signature-block">
