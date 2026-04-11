@@ -885,8 +885,7 @@ body.quotation-page:not(.theme-second) .quotation-canvas {
 .oikonomiki-prosfora.theme-second .catalog-products-row .products-list {
   display: flex;
   flex-direction: column;
-  /* Compress vertical spacing between product blocks */
-  gap: 3px;
+  gap: 14px;
 }
 
 /* Keep catalog product images true-color (not icon tint) */
