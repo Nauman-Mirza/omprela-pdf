@@ -353,11 +353,10 @@ body.quotation-page {
   white-space: pre-line;
   font-family: var(--font-inter);
   font-size: 13px;
-  line-height: 1.65;
+  line-height: 1.85;
   font-weight: 400;
   color: #3D3D3C;
   letter-spacing: 0.01em;
-  width: 55%;
 }
 
 .page4-signature-block {
